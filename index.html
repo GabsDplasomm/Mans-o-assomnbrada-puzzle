@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle da Mansão</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Puzzle da Mansão Amaldiçoada</h1>
+
+<div class="container">
+
+    <!-- CÔMODO A -->
+    <div class="room">
+        <h2>Cômodo A – Matriz</h2>
+        <button onclick="ativarPlaca()">Pisar na placa</button>
+        <div id="grid" class="grid"></div>
+    </div>
+
+    <!-- CÔMODO B -->
+    <div class="room">
+        <h2>Cômodo B – Teclado</h2>
+
+        <div id="sequence" class="sequence"></div>
+
+        <div class="keyboard">
+            <button onclick="pressionar(1)">1</button>
+            <button onclick="pressionar(2)">2</button>
+            <button onclick="pressionar(3)">3</button>
+            <button onclick="pressionar(4)">4</button>
+            <button onclick="pressionar(5)">5</button>
+            <button onclick="pressionar(6)">6</button>
+            <button onclick="pressionar(7)">7</button>
+            <button onclick="pressionar(8)">8</button>
+            <button onclick="pressionar(9)">9</button>
+        </div>
+
+        <div id="entrada" class="entrada">Entrada:</div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
