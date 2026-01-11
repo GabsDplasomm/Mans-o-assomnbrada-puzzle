@@ -35,7 +35,7 @@ function ativarPlaca() {
         cell.textContent = simbolo;
         cell.dataset.index = i;
 
-        // 🔥 CLIQUE NA MATRIZ
+        // CLIQUE NA MATRIZ
         cell.addEventListener("click", () => clicarCelula(i));
 
         grid.appendChild(cell);
@@ -97,3 +97,4 @@ function verificarResultado() {
 
     ativo = false;
 }
+
