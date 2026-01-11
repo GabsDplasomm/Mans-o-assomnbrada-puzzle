@@ -3,14 +3,17 @@ let sequencia = [];
 let entradaJogador = [];
 let ativo = false;
 
+// Pool de símbolos
 const letras = ["A", "E", "F", "M", "Z", "R", "K", "T"];
 const numeros = ["1","2","3","4","5","6","7","8","9"];
 const pool = [...letras, ...numeros];
 
+// Gera símbolo aleatório
 function gerarSimbolo() {
     return pool[Math.floor(Math.random() * pool.length)];
 }
 
+// Ativa a placa
 function ativarPlaca() {
     ativo = true;
     matriz = [];
@@ -22,6 +25,7 @@ function ativarPlaca() {
 
     document.getElementById("entrada").textContent = "Entrada:";
 
+    // Cria a matriz clicável
     for (let i = 0; i < 9; i++) {
         const simbolo = gerarSimbolo();
         matriz.push(simbolo);
@@ -29,27 +33,38 @@ function ativarPlaca() {
         const cell = document.createElement("div");
         cell.className = "cell";
         cell.textContent = simbolo;
+        cell.dataset.index = i;
+
+        // 🔥 CLIQUE NA MATRIZ
+        cell.addEventListener("click", () => clicarCelula(i));
+
         grid.appendChild(cell);
     }
 
+    // Gera sequência sem repetir
     while (sequencia.length < 9) {
         const n = Math.floor(Math.random() * 9) + 1;
-        if (!sequencia.includes(n)) sequencia.push(n);
+        if (!sequencia.includes(n)) {
+            sequencia.push(n);
+        }
     }
 
     document.getElementById("sequence").textContent =
         "Sequência: " + sequencia.join(" - ");
 }
 
-function pressionar(posicao) {
+// Clique na célula da matriz
+function clicarCelula(index) {
     if (!ativo) return;
 
-    const index = posicao - 1;
     const simbolo = matriz[index];
-
     entradaJogador.push(simbolo);
-    document.getElementById("entrada").textContent += " " + simbolo;
 
+    // Atualiza entrada
+    const entradaDiv = document.getElementById("entrada");
+    entradaDiv.textContent += " " + simbolo;
+
+    // Efeito visual
     const cells = document.querySelectorAll(".cell");
     cells[index].classList.add("active");
 
@@ -62,6 +77,7 @@ function pressionar(posicao) {
     }
 }
 
+// Verificação final
 function verificarResultado() {
     let correta = true;
 
@@ -73,10 +89,11 @@ function verificarResultado() {
         }
     }
 
-    alert(correta
-        ? "✔ Puzzle resolvido! As portas se abrem..."
-        : "✖ Erro... Algo se move na escuridão."
-    );
+    if (correta) {
+        alert("✔ Puzzle resolvido! As portas se abrem...");
+    } else {
+        alert("✖ Erro... Algo se move na escuridão.");
+    }
 
     ativo = false;
 }
